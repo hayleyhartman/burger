@@ -4,7 +4,7 @@ var connection = require('./connection')
 
 // In the orm.js file, create the methods that will execute the necessary MySQL commands in the controllers. These are the methods you will need to use in order to retrieve and store data in your database.
 
-var ORM = {
+var orm = {
     selectAll: function (tableInput, colToSearch, valOfCol) {
         var queryString = "SELECT * FROM ?? WHERE ?? = ?";
         connection.query(queryString, [tableInput, colToSearch, valOfCol], function (err, result) {
@@ -19,9 +19,9 @@ var ORM = {
             console.log(result);
         });
     },
-    updateOne: function (tableInput, colName, colVal, conditionCol, conditionVal) {
-        var queryString = "UPDATE ?? SET ?? = ?? WHERE ?? = ??";
-        connection.query(queryString, [tableInput, colName, colVal, conditionCol, conditionVal], function (err, result) {
+    updateOne: function (tableInput, colName, colVal, condition) {
+        var queryString = "UPDATE ?? SET ?? = ?? WHERE ??";
+        connection.query(queryString, [tableInput, colName, colVal, condition], function (err, result) {
             if (err) throw err;
             console.log(result);
         });

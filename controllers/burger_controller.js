@@ -1,11 +1,14 @@
 
 var app = require('express')
 var burger = require('../models/burger')
-
+var express = require('express')
 var router = express.Router();
+var connection = require('../config/connection')
+var mysql = require('mysql')
+
 
 router.get("/", function(req, res) {
-  burger.all(function(data) {
+  burger.selectAll(function(data) {
     var hbsObject = {
       burgers: data
     };
@@ -15,7 +18,7 @@ router.get("/", function(req, res) {
 });
 
 router.post("/api/burgers", function(req, res) {
-  burger.create([
+  burger.insertOne([
     "burger", "devoured"
   ], [
     req.body.name, req.body.devoured
