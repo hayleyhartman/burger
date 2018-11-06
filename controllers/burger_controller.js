@@ -14,14 +14,13 @@ router.get("/", function(req, res) {
     };
     console.log(hbsObject);
     res.render("index", hbsObject);
+
   });
 });
 
-router.post("/api/burgers", function(req, res) {
+router.post("/api/burger", function(req, res) {
   burger.insertOne([
-    "burger", "devoured"
-  ], [
-    req.body.name, req.body.devoured
+    "burgers", "burger_ name, devoured"], [req.body.burger_name, req.body.devoured
   ], function(result) {
     res.json({ id: result.insertId });
   });
